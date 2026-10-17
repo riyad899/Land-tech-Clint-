@@ -2,7 +2,8 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -12,15 +13,35 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Force pure black text and proper visibility for all input fields across the app */
+input,
+select,
+textarea {
+  color: #000000 !important;
+}
+
+/* Make placeholder text clean and clearly readable */
+input::placeholder,
+textarea::placeholder {
+  color: #4b5563 !important;
+  opacity: 1 !important;
+}
+
+/* Ensure autofill doesn't change text color to white */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000000 !important;
 }
