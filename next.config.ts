@@ -6,6 +6,13 @@ function getBackendUrl(): string {
   if (process.env.INTERNAL_BACKEND_URL) {
     return process.env.INTERNAL_BACKEND_URL;
   }
+  if (process.env.NEXT_PUBLIC_BACKEND_URL) {
+    return process.env.NEXT_PUBLIC_BACKEND_URL;
+  }
+  // In production / Vercel deployment, proxy to the deployed backend server
+  if (process.env.NODE_ENV === "production" || process.env.VERCEL) {
+    return "https://land-tech-server.vercel.app";
+  }
   try {
     const portFilePath = path.resolve(process.cwd(), "../server/.port.json");
     if (fs.existsSync(portFilePath)) {
